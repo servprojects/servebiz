@@ -1,0 +1,29 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Brand {
+  _id: ID
+  code: String!
+  createdBy: String!
+  name: String!
+  weight: String!
+}
+
+type Mutation {
+  createBrand(inputs: UpsertBrandtInput!): Brand!
+  removeBrand(id: Int!): Brand!
+}
+
+type Query {
+  brand(id: Int!): Brand!
+  brands: [Brand!]!
+}
+
+input UpsertBrandtInput {
+  _id: ID
+  code: String!
+  createdBy: String
+  name: String!
+  weight: String!
+}
