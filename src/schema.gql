@@ -10,20 +10,21 @@ type Brand {
   weight: String!
 }
 
-type Mutation {
-  createBrand(inputs: UpsertBrandtInput!): Brand!
-  removeBrand(id: Int!): Brand!
-}
-
-type Query {
-  brand(id: Int!): Brand!
-  brands: [Brand!]!
-}
-
-input UpsertBrandtInput {
+input BrandtInput {
   _id: ID
   code: String!
   createdBy: String
   name: String!
   weight: String!
+}
+
+type Mutation {
+  createBrand(inputs: BrandtInput!): Brand!
+  removeBrand(id: String!): Brand!
+  updateBrand(updateBrandInput: BrandtInput!): Brand!
+}
+
+type Query {
+  brand(id: String!): Brand!
+  brands: [Brand!]!
 }

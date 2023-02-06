@@ -1,9 +1,9 @@
 import { InputType, Int, Field, PickType } from '@nestjs/graphql';
-import { Brand, BrandInput } from '../entities/brand.entity';
+import { Brand, BrandInputType } from '../entities/brand.entity';
 
 
 @InputType()
-export class UpsertBrandtInput extends PickType(BrandInput, [
+export class BrandtInput extends PickType(BrandInputType, [
   'name',
   'code',
   'weight',

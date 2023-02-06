@@ -1,10 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-// import { CreateBrandInput } from './dto/create-brand.input';
-// import { UpdateBrandInput } from './dto/update-brand.input';
 import { Brand, BrandDocument } from './entities/brand.entity';
 import { Model, Schema as MongooseSchema } from 'mongoose';
-import { UpsertBrandtInput } from './dto/brand.input';
+import { BrandtInput } from './dto/brand.input';
 
 @Injectable()
 export class BrandService {
@@ -12,24 +10,26 @@ export class BrandService {
     @InjectModel(Brand.name) private brandModel: Model<BrandDocument>,
   ) {}
 
-  create(createBrandInput: UpsertBrandtInput) {
+  create(createBrandInput: BrandtInput) {
     const createdBrand = new this.brandModel(createBrandInput);
     return createdBrand.save();
   }
 
   findAll() {
-    return `This action returns all brand`;
+    return this.brandModel.find({}).exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} brand`;
+  findOne(id: MongooseSchema.Types.ObjectId) {
+    return this.brandModel.findById(id).exec();
   }
 
-  // update(id: number, updateBrandInput: UpdateBrandInput) {
-  //   return `This action updates a #${id} brand`;
-  // }
+  update(updateBrandInput: BrandtInput) {
+    return this.brandModel
+      .findByIdAndUpdate(updateBrandInput._id, updateBrandInput, { new: true })
+      .exec();
+  }
 
-  remove(id: number) {
-    return `This action removes a #${id} brand`;
+  remove(id: MongooseSchema.Types.ObjectId) {
+    return this.brandModel.findByIdAndDelete(id).exec();
   }
 }

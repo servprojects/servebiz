@@ -9,7 +9,7 @@ export class BrandCommon {
   @Field((type) => ID, { nullable: true })
   _id: MongooseSchema.Types.ObjectId;
 
-  @Prop()
+  @Prop({ required: true })
   @Field((type) => String)
   name: string;
 
@@ -33,7 +33,7 @@ export class Brand extends BrandCommon {
 
 @InputType('BrandInputType', { isAbstract: true })
 @ObjectType()
-export class BrandInput extends BrandCommon {
+export class BrandInputType extends BrandCommon {
   @Prop()
   @Field((type) => String, { nullable: true })
   createdBy: string;
