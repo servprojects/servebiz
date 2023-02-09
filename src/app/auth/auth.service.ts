@@ -41,6 +41,7 @@ export class AuthService {
   
 
   async me(token: string): Promise<User | null> {
+    console.log(token)
     if (token) {
       console.log(token)
       const data = this.jwtService.decode(token, { json: true }) as {

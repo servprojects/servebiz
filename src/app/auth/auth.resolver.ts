@@ -17,12 +17,21 @@ export class AuthResolver {
     @Args('inputs') authInput: AuthInput,
     @Context('req') req: Request,
   ) {
-    
     const serviceResponse = await this.authService.signin(authInput);
-    const { user, token } = serviceResponse
+    const { user, token } = serviceResponse;
     req.res?.cookie('jwt', token, { httpOnly: true });
-    console.log(req)
+
     return serviceResponse;
+  }
+
+  @Mutation(() => User)
+  async signinLocal(
+    @Args('data') data: AuthInput,
+    @Context('req') req: Request,
+  ): Promise<User> {
+    const { user, token } = await this.authService.signin(data);
+    req.res?.cookie('jwt', token, { httpOnly: true });
+    return user;
   }
 
   @UseGuards(AuthGuard)
@@ -34,8 +43,8 @@ export class AuthResolver {
 
   @UseGuards(AuthGuard)
   @Query(() => User)
-  me(@Context('user') user: User): User {
-    console.log(user)
+  async me(@Context('user') user: User): Promise<User> {
+    console.log(user);
     return user;
   }
 }

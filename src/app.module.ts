@@ -20,7 +20,7 @@ import { AuthService } from './app/auth/auth.service';
     MongooseModule.forRoot('mongodb://localhost:27017/servebiz-official'),
     GraphQLModule.forRoot({
       // GraphQLModule.forRootAsync<ApolloDriverConfig>({
-      // imports: [AuthModule],
+      imports: [AuthModule],
       inject: [AuthService],
       driver: ApolloDriver,
       debug: false,

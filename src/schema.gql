@@ -35,6 +35,7 @@ type Mutation {
   removeUser(id: String!): User!
   signOut: User!
   signin(inputs: AuthInput!): AuthResponse!
+  signinLocal(data: AuthInput!): User!
   updateBrand(updateBrandInput: BrandtInput!): Brand!
   updateUser(updateUserInput: UserInput!): User!
 }
