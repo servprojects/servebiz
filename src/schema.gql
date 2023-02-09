@@ -2,16 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-input AuthInput {
-  password: String!
-  username: String!
-}
-
-type AuthResponse {
-  token: String!
-  user: User!
-}
-
 type Brand {
   _id: ID
   code: String!
@@ -33,9 +23,6 @@ type Mutation {
   createUser(inputs: UserInput!): User!
   removeBrand(id: String!): Brand!
   removeUser(id: String!): User!
-  signOut: User!
-  signin(inputs: AuthInput!): AuthResponse!
-  signinLocal(data: AuthInput!): User!
   updateBrand(updateBrandInput: BrandtInput!): Brand!
   updateUser(updateUserInput: UserInput!): User!
 }
@@ -43,7 +30,6 @@ type Mutation {
 type Query {
   brand(id: String!): Brand!
   brands: [Brand!]!
-  me: User!
   user(id: String!): User!
   users: [User!]!
 }
