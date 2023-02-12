@@ -12,5 +12,6 @@ require('dotenv').config()
     // JwtModule.register({ secret: process.env.JWT }),
   ],
   providers: [AuthResolver, AuthService],
+  exports: [AuthService]
 })
 export class AuthModule {}

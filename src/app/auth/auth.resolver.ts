@@ -21,7 +21,7 @@ export class AuthResolver {
     const serviceResponse = await this.authService.signin(authInput);
     const { user, token } = serviceResponse
     req.res?.cookie('jwt', token, { httpOnly: true });
-    console.log(req)
+    
     return serviceResponse;
   }
 
@@ -35,7 +35,8 @@ export class AuthResolver {
   @UseGuards(AuthGuard)
   @Query(() => User)
   me(@Context('user') user: User): User {
-    console.log(user)
+  // me(@Context('user') user: User, @Context() sample : any): User {
+  
     return user;
   }
 }

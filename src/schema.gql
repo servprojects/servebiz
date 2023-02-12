@@ -2,59 +2,59 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-input AuthInput {
-  password: String!
-  username: String!
-}
-
-type AuthResponse {
-  token: String!
-  user: User!
-}
-
 type Brand {
   _id: ID
+  name: String!
   code: String!
+  weight: String!
   createdBy: String!
-  name: String!
-  weight: String!
-}
-
-input BrandtInput {
-  _id: ID
-  code: String!
-  createdBy: String
-  name: String!
-  weight: String!
-}
-
-type Mutation {
-  createBrand(inputs: BrandtInput!): Brand!
-  createUser(inputs: UserInput!): User!
-  removeBrand(id: String!): Brand!
-  removeUser(id: String!): User!
-  signOut: User!
-  signin(inputs: AuthInput!): AuthResponse!
-  updateBrand(updateBrandInput: BrandtInput!): Brand!
-  updateUser(updateUserInput: UserInput!): User!
-}
-
-type Query {
-  brand(id: String!): Brand!
-  brands: [Brand!]!
-  me: User!
-  user(id: String!): User!
-  users: [User!]!
 }
 
 type User {
   _id: ID
-  password: String!
   username: String!
+  password: String!
+}
+
+type AuthResponse {
+  user: User!
+  token: String!
+}
+
+type Query {
+  me: User!
+  brands: [Brand!]!
+  brand(id: String!): Brand!
+  users: [User!]!
+  user(id: String!): User!
+}
+
+type Mutation {
+  signin(inputs: AuthInput!): AuthResponse!
+  signOut: User!
+  createBrand(inputs: BrandtInput!): Brand!
+  updateBrand(updateBrandInput: BrandtInput!): Brand!
+  removeBrand(id: String!): Brand!
+  createUser(inputs: UserInput!): User!
+  updateUser(updateUserInput: UserInput!): User!
+  removeUser(id: String!): User!
+}
+
+input AuthInput {
+  username: String!
+  password: String!
+}
+
+input BrandtInput {
+  _id: ID
+  name: String!
+  code: String!
+  weight: String!
+  createdBy: String
 }
 
 input UserInput {
   _id: ID
-  password: String!
   username: String!
+  password: String!
 }

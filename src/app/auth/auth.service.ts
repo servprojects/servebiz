@@ -41,13 +41,13 @@ export class AuthService {
   
 
   async me(token: string): Promise<User | null> {
+    
     if (token) {
-      console.log(token)
       const data = this.jwtService.decode(token, { json: true }) as {
         sub: unknown;
       };
 
-      if (data?.sub && !isNaN(Number(data.sub))) {
+      if (data?.sub) {
         const user = await this.userModel.findOne({ _id: data?.sub }).exec();
         return user || null;
       }
