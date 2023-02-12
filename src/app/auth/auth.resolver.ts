@@ -7,11 +7,13 @@ import { User } from '@/app/user/entities/user.entity';
 import { Request } from 'express';
 import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@/app/guard/auth.guard';
+import { Public } from './decorator/public.decorator';
 
 @Resolver(() => AuthResponse)
 export class AuthResolver {
   constructor(private readonly authService: AuthService) {}
 
+  @Public()
   @Mutation(() => AuthResponse)
   async signin(
     @Args('inputs') authInput: AuthInput,
@@ -25,14 +27,14 @@ export class AuthResolver {
     return serviceResponse;
   }
 
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   @Mutation(() => User)
   signOut(@Context('req') req: Request, @Context('user') user: User): User {
     req.res?.clearCookie('jwt', { httpOnly: true });
     return user;
   }
 
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   @Query(() => User)
   me(@Context('user') user: User): User {
   // me(@Context('user') user: User, @Context() sample : any): User {
