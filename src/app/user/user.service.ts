@@ -1,9 +1,11 @@
+import * as bcrypt from 'bcrypt';
+import { Model, Schema as MongooseSchema } from 'mongoose';
+
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { User, UserDocument } from './entities/user.entity';
-import { Model, Schema as MongooseSchema } from 'mongoose';
+
 import { UserInput } from './dto/user.input';
-import * as bcrypt from 'bcrypt';
+import { User, UserDocument } from './entities/user.entity';
 
 @Injectable()
 export class UserService {

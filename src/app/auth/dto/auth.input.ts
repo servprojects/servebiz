@@ -1,7 +1,6 @@
-import { InputType, Int, Field, PickType } from '@nestjs/graphql';
+import { InputType, PickType } from '@nestjs/graphql';
 
 import { AuthType } from '../entities/auth.entity';
-
 
 @InputType()
 export class AuthInput extends PickType(AuthType, [

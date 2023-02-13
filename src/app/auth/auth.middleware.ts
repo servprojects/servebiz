@@ -1,5 +1,7 @@
-import { Request } from 'express'
-import { AuthService } from '@/app/auth/auth.service'
+import { Request } from 'express';
+
+import { AuthService } from '@/app/auth/auth.service';
+
 export const authenticateUserByRequest = (
   authService: AuthService, 
   request: Request

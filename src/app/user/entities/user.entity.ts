@@ -1,6 +1,7 @@
-import { ObjectType, InputType, Field, Int, ID } from '@nestjs/graphql';
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as MongooseSchema } from 'mongoose';
+
+import { Field, ID, InputType, Int, ObjectType } from '@nestjs/graphql';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 @InputType('UserType', { isAbstract: true })
 @ObjectType()
@@ -13,17 +14,17 @@ export class User  {
   @Field((type) => String)
   username: string;
 
-  @Prop()
+  @Prop({ required: true })
   @Field((type) => String)
   password: string;
+
 }
 
-// @InputType('UserInputType', { isAbstract: true })
+// @InputType('UserPrivateInputType', { isAbstract: true })
 // @ObjectType()
-// export class UserInputType extends UserCommon {
-//   @Prop()
-//   @Field((type) => String, { nullable: true })
-//   createdBy: string;
+// export class UserPrivate extends User {
+ 
+ 
 // }
 
 export type UserDocument = User & Document;

@@ -1,10 +1,12 @@
+import { User, UserSchema } from '@/app/user/entities/user.entity';
 import { Module } from '@nestjs/common';
-import { JwtModule, JwtService } from '@nestjs/jwt';
+import { JwtModule } from '@nestjs/jwt';
+import { MongooseModule } from '@nestjs/mongoose';
+
 import { AuthResolver } from './auth.resolver';
 import { AuthService } from './auth.service';
-import { MongooseModule } from '@nestjs/mongoose';
-import { User, UserSchema } from '@/app/user/entities/user.entity';
-require('dotenv').config()
+
+require('dotenv').config();
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
@@ -12,6 +14,6 @@ require('dotenv').config()
     // JwtModule.register({ secret: process.env.JWT }),
   ],
   providers: [AuthResolver, AuthService],
-  exports: [AuthService]
+  exports: [AuthService],
 })
 export class AuthModule {}

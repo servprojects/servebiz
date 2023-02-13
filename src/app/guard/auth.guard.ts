@@ -1,8 +1,7 @@
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
-import { GqlExecutionContext } from '@nestjs/graphql';
-import {Reflector} from "@nestjs/core"
 import { User } from '@/app/user/entities/user.entity';
-
+import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
+import { GqlExecutionContext } from '@nestjs/graphql';
 
 @Injectable()
 // export class AuthGuard extends AuthGuard('jwt'){

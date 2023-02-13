@@ -1,7 +1,5 @@
 import { User } from '@/app/user/entities/user.entity';
-import { ObjectType, InputType, Field, Int, ID } from '@nestjs/graphql';
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Schema as MongooseSchema } from 'mongoose';
+import { Field, InputType, ObjectType } from '@nestjs/graphql';
 
 @InputType('AuthType', { isAbstract: true })
 @ObjectType()

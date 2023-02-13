@@ -1,10 +1,12 @@
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { User, UserDocument } from '@/app/user/entities/user.entity';
-import { Model, Schema as MongooseSchema } from 'mongoose';
 import * as bcrypt from 'bcrypt';
-import { AuthInput } from './dto/auth.input';
+import { Model, Schema as MongooseSchema } from 'mongoose';
+
+import { User, UserDocument } from '@/app/user/entities/user.entity';
+import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { InjectModel } from '@nestjs/mongoose';
+
+import { AuthInput } from './dto/auth.input';
 import { AuthResponse } from './entities/auth.entity';
 
 @Injectable()
