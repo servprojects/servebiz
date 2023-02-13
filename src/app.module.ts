@@ -1,15 +1,18 @@
+import { join } from 'path';
+
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
+import { GraphQLModule } from '@nestjs/graphql';
+import { MongooseModule } from '@nestjs/mongoose';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { MongooseModule } from '@nestjs/mongoose';
-import { GraphQLModule } from '@nestjs/graphql';
-import { join } from 'path';
-import { BrandModule } from './app/brand/brand.module';
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { UserModule } from './app/user/user.module';
-import { AuthModule } from './app/auth/auth.module';
 import { authenticateUserByRequest } from './app/auth/auth.middleware';
+import { AuthModule } from './app/auth/auth.module';
 import { AuthService } from './app/auth/auth.service';
+import { BrandModule } from './app/masterdata/brand/brand.module';
+import { UserModule } from './app/masterdata/user/user.module';
+
 @Module({
   imports: [
     AuthModule,

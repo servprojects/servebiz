@@ -1,4 +1,4 @@
-import { User } from '@/app/user/entities/user.entity';
+import { User } from '@/app/masterdata/user/entities/user.entity';
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { GqlExecutionContext } from '@nestjs/graphql';

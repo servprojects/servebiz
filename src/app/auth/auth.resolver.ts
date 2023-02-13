@@ -1,6 +1,6 @@
 import { Request } from 'express';
 
-import { User } from '@/app/user/entities/user.entity';
+import { User } from '@/app/masterdata/user/entities/user.entity';
 import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
 
 import { AuthService } from './auth.service';

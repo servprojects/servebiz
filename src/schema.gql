@@ -2,14 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Brand {
-  _id: ID
-  name: String!
-  code: String!
-  weight: String!
-  createdBy: String!
-}
-
 type User {
   _id: ID
   username: String!
@@ -19,6 +11,14 @@ type User {
 type AuthResponse {
   user: User!
   token: String!
+}
+
+type Brand {
+  _id: ID
+  name: String!
+  code: String!
+  weight: String!
+  createdBy: String!
 }
 
 type Query {

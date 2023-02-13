@@ -1,4 +1,4 @@
-import { User } from '@/app/user/entities/user.entity';
+import { User } from '@/app/masterdata/user/entities/user.entity';
 import { Field, InputType, ObjectType } from '@nestjs/graphql';
 
 @InputType('AuthType', { isAbstract: true })

@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import * as cookieParser from 'cookie-parser';
 import { Reflector } from "@nestjs/core";
-import { AuthGuard } from './app/guard/auth.guard';
+import { AuthGuard } from './app/auth/guard/auth.guard';
 
 
 async function bootstrap() {

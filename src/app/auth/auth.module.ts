@@ -1,4 +1,4 @@
-import { User, UserSchema } from '@/app/user/entities/user.entity';
+import { User, UserSchema } from '@/app/masterdata/user/entities/user.entity';
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { MongooseModule } from '@nestjs/mongoose';
