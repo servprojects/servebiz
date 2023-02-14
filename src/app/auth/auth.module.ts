@@ -10,8 +10,7 @@ require('dotenv').config();
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
-    JwtModule.register({ secret: 'JC816' }),
-    // JwtModule.register({ secret: process.env.JWT }),
+    JwtModule.register({ secret: process.env.JWT }),
   ],
   providers: [AuthResolver, AuthService],
   exports: [AuthService],

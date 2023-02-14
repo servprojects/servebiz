@@ -13,12 +13,14 @@ import { AuthService } from './app/auth/auth.service';
 import { BrandModule } from './app/masterdata/brand/brand.module';
 import { UserModule } from './app/masterdata/user/user.module';
 
+require('dotenv').config();
+
 @Module({
   imports: [
     AuthModule,
     BrandModule,
     UserModule,
-    MongooseModule.forRoot('mongodb://localhost:27017/servebiz-official'),
+    MongooseModule.forRoot(process.env.database),
     GraphQLModule.forRootAsync<ApolloDriverConfig>({
       driver: ApolloDriver,
       imports: [AuthModule],
