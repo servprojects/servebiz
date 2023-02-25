@@ -24,11 +24,11 @@ export class User {
   password: string;
 
   @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Permission' }] })
-  @Field((type) => [Permission])
+  @Field((type) => [Permission], { nullable: true })
   permissions: Permission[];
 
-  @Field((type) => [String])
-  permissionIds: string[];
+  @Field((type) => [ID] , { nullable: true })
+  permissionIds: mongoose.Schema.Types.ObjectId[];
 }
 
 // @InputType('UserPrivateInputType', { isAbstract: true })

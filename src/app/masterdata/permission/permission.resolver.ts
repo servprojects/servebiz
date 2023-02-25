@@ -5,7 +5,6 @@ import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { PermissionInput } from './dto/permission.input';
 import { Permission } from './entities/permission.entity';
 import { PermissionService } from './permission.service';
-import { Public } from '@/app/auth/decorator/public.decorator';
 
 @Resolver(() => Permission)
 export class PermissionResolver {
@@ -22,7 +21,7 @@ export class PermissionResolver {
 
   @Query(() => [Permission], { name: 'permissions' })
   findAll() {
-    return this.permissionService.findAll();
+    return this.permissionService.findAll({});
   }
 
   @Query(() => Permission, { name: 'permission' })

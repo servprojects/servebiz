@@ -6,25 +6,30 @@ import { InjectModel } from '@nestjs/mongoose';
 
 import { PermissionInput } from './dto/permission.input';
 import { Permission, PermissionDocument } from './entities/permission.entity';
+import { GeneralArgs } from '@/app/general/dto/general.args';
+import { permissionObjectFilters } from './utils/permissionObjectFilter';
 
 @Injectable()
 export class PermissionService {
-  constructor(@InjectModel(Permission.name) private permissionModel: Model<PermissionDocument>) {}
+  constructor(
+    @InjectModel(Permission.name)
+    private permissionModel: Model<PermissionDocument>,
+  ) {}
 
   async create(inputData: PermissionInput) {
-
     const createdPermission = new this.permissionModel({
       name: inputData.name,
       code: inputData.code,
-      weight: inputData.weight
+      weight: inputData.weight,
     });
-
 
     return createdPermission.save();
   }
 
-  findAll() {
-    return this.permissionModel.find({}).exec();
+  findAll(args: GeneralArgs) {
+    let objectFilter = permissionObjectFilters(args);
+  
+    return this.permissionModel.find(objectFilter ? objectFilter : {}).exec();
   }
 
   findOne(id: MongooseSchema.Types.ObjectId) {

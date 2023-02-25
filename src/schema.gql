@@ -13,8 +13,8 @@ type User {
   _id: ID
   username: String!
   password: String!
-  permissions: [Permission!]!
-  permissionIds: [String!]!
+  permissions: [Permission!]
+  permissionIds: [ID!]
 }
 
 type AuthResponse {
@@ -70,7 +70,7 @@ input UserInput {
   _id: ID
   username: String!
   password: String!
-  permissionIds: [String!]!
+  permissionIds: [ID!]
 }
 
 input PermissionInput {

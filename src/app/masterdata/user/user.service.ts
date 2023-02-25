@@ -6,23 +6,35 @@ import { InjectModel } from '@nestjs/mongoose';
 
 import { UserInput } from './dto/user.input';
 import { User, UserDocument } from './entities/user.entity';
+import { PermissionService } from '../permission/permission.service';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
+  constructor(
+    @InjectModel(User.name) private userModel: Model<UserDocument>,
+    private readonly permissionService: PermissionService,
+  ) {}
 
-  async create(createUserInput: UserInput) {
-    const password = await bcrypt.hash(createUserInput.password, 10);
+  async create(inputData: UserInput) {
+    let permissions = [];
+    if (inputData.permissionIds) {
+      permissions = await this.permissionService.findAll({
+        ids: inputData.permissionIds,
+      });
+    }
 
+    const password = await bcrypt.hash(inputData.password, 10);
     const createdUser = new this.userModel({
-      username: createUserInput.username,
+      username: inputData.username,
       password: password,
+      permissions,
     });
+
     return createdUser.save();
   }
 
   findAll() {
-    return this.userModel.find({}).exec();
+    return this.userModel.find({}).populate('permissions').exec();
   }
 
   findOne(id: MongooseSchema.Types.ObjectId) {

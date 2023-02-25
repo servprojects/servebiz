@@ -6,6 +6,7 @@ import { UserInput } from './dto/user.input';
 import { User } from './entities/user.entity';
 import { UserService } from './user.service';
 import { Public } from '@/app/auth/decorator/public.decorator';
+import { HttpException, HttpStatus } from '@nestjs/common';
 
 @Resolver(() => User)
 export class UserResolver {
