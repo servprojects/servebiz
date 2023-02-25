@@ -12,12 +12,14 @@ import { AuthModule } from './app/auth/auth.module';
 import { AuthService } from './app/auth/auth.service';
 import { BrandModule } from './app/masterdata/brand/brand.module';
 import { UserModule } from './app/masterdata/user/user.module';
+import { PermissionModule } from './app/masterdata/permission/permission.module';
 
 @Module({
   imports: [
     AuthModule,
     BrandModule,
     UserModule,
+    PermissionModule,
     MongooseModule.forRoot('mongodb://localhost:27017/servebiz-official'),
     GraphQLModule.forRootAsync<ApolloDriverConfig>({
       driver: ApolloDriver,
