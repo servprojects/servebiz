@@ -23,19 +23,17 @@ export class User {
   @Field((type) => String)
   password: string;
 
+  // REFERENCES
+
   @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Permission' }] })
   @Field((type) => [Permission], { nullable: true })
   permissions: Permission[];
 
-  @Field((type) => [ID] , { nullable: true })
+  // IDS
+
+  @Field((type) => [ID], { nullable: true })
   permissionIds: mongoose.Schema.Types.ObjectId[];
 }
-
-// @InputType('UserPrivateInputType', { isAbstract: true })
-// @ObjectType()
-// export class UserPrivate extends User {
-
-// }
 
 export type UserDocument = User & Document;
 export const UserSchema = SchemaFactory.createForClass(User);

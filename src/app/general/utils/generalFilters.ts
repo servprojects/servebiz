@@ -9,7 +9,6 @@ export const generalObjectFilters = (args: GeneralArgs) => {
   }
 
   if (args.ids && args.ids.length > 0) {
-    
     filterArr.push({ _id: { $in: args.ids } });
   }
 

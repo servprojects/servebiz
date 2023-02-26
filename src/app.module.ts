@@ -13,13 +13,18 @@ import { AuthService } from './app/auth/auth.service';
 import { BrandModule } from './app/masterdata/brand/brand.module';
 import { UserModule } from './app/masterdata/user/user.module';
 import { PermissionModule } from './app/masterdata/permission/permission.module';
+import { BranchModule } from './app/masterdata/branch/branch.module';
+import { CompanyModule } from './app/masterdata/company/company.module';
 
 @Module({
   imports: [
     AuthModule,
+    BranchModule,
     BrandModule,
-    UserModule,
+    CompanyModule,
     PermissionModule,
+    UserModule,
+
     MongooseModule.forRoot('mongodb://localhost:27017/servebiz-official'),
     GraphQLModule.forRootAsync<ApolloDriverConfig>({
       driver: ApolloDriver,
@@ -30,14 +35,14 @@ import { PermissionModule } from './app/masterdata/permission/permission.module'
         autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
         cors: {
           origin: '*',
-          credentials: true
+          credentials: true,
         },
         context: async ({ req }) => {
-          const user = await authenticateUserByRequest(authService, req)
-          return { req, user, sample: "heloworld"  }
-        }
-      })
-    })
+          const user = await authenticateUserByRequest(authService, req);
+          return { req, user, sample: 'heloworld' };
+        },
+      }),
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],

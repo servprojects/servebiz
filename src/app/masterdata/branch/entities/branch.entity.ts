@@ -2,7 +2,11 @@ import { Document, Schema as MongooseSchema } from 'mongoose';
 
 import { Field, ID, InputType, ObjectType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Company, CompanyDocument } from '../../company/entities/branch.entity';
+import {
+  Company,
+  CompanyDocument,
+} from '../../company/entities/company.entity';
+import * as mongoose from 'mongoose';
 
 @InputType('BranchType', { isAbstract: true })
 @ObjectType()
@@ -19,9 +23,18 @@ export class Branch {
   @Field((type) => String)
   code: string;
 
-  @Prop()
-  @Field((type) => Company)
-  Company: CompanyDocument;
+  // REFERENCES
+  @Prop({
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'Company',
+  })
+  @Field((type) => Company, { nullable: true })
+  company: Company;
+  // IDS
+
+  @Field((type) => ID, { nullable: true })
+  companyId: mongoose.Schema.Types.ObjectId;
 }
 
 export type BranchDocument = Branch & Document;

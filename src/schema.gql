@@ -30,32 +30,70 @@ type Brand {
   createdBy: String!
 }
 
+type ContactDetails {
+  contactPerson: String!
+  mobileNumber: String!
+  email: String!
+  address: String!
+  telephone: String!
+}
+
+type Company {
+  _id: ID
+  name: String!
+  code: String!
+  contactDetails: ContactDetails
+}
+
+type Branch {
+  _id: ID
+  name: String!
+  code: String!
+  company: Company
+  companyId: ID
+}
+
 type Query {
   me: User!
+  branches: [Branch!]!
+  branch(id: String!): Branch!
   brands: [Brand!]!
   brand(id: String!): Brand!
-  users: [User!]!
-  user(id: String!): User!
+  companys: [Company!]!
+  company(id: String!): Company!
   permissions: [Permission!]!
   permission(id: String!): Permission!
+  users: [User!]!
+  user(id: String!): User!
 }
 
 type Mutation {
   signin(inputs: AuthInput!): AuthResponse!
   signOut: User!
+  upsertBranch(inputs: BranchInput!): Branch!
+  removeBranch(id: String!): Branch!
   createBrand(inputs: BrandtInput!): Brand!
   updateBrand(updateBrandInput: BrandtInput!): Brand!
   removeBrand(id: String!): Brand!
+  upsertCompany(inputs: CompanyInput!): Company!
+  removeCompany(id: String!): Company!
+  upsertPermission(inputs: PermissionInput!): Permission!
+  removePermission(id: String!): Permission!
   createUser(inputs: UserInput!): User!
   updateUser(updateUserInput: UserInput!): User!
   removeUser(id: String!): User!
-  upsertPermission(inputs: PermissionInput!): Permission!
-  removePermission(id: String!): Permission!
 }
 
 input AuthInput {
   username: String!
   password: String!
+}
+
+input BranchInput {
+  _id: ID
+  name: String!
+  code: String!
+  companyId: ID
 }
 
 input BrandtInput {
@@ -66,11 +104,19 @@ input BrandtInput {
   createdBy: String
 }
 
-input UserInput {
+input CompanyInput {
   _id: ID
-  username: String!
-  password: String!
-  permissionIds: [ID!]
+  name: String!
+  code: String!
+  contactDetails: ContactDetailsType
+}
+
+input ContactDetailsType {
+  contactPerson: String!
+  mobileNumber: String!
+  email: String!
+  address: String!
+  telephone: String!
 }
 
 input PermissionInput {
@@ -78,4 +124,11 @@ input PermissionInput {
   name: String!
   code: String!
   weight: Float!
+}
+
+input UserInput {
+  _id: ID
+  username: String!
+  password: String!
+  permissionIds: [ID!]
 }
