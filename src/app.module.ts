@@ -15,6 +15,7 @@ import { UserModule } from './app/masterdata/user/user.module';
 import { PermissionModule } from './app/masterdata/permission/permission.module';
 import { BranchModule } from './app/masterdata/branch/branch.module';
 import { CompanyModule } from './app/masterdata/company/company.module';
+import { DepartmentModule } from './app/masterdata/department/department.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { CompanyModule } from './app/masterdata/company/company.module';
     BranchModule,
     BrandModule,
     CompanyModule,
+    DepartmentModule,
     PermissionModule,
     UserModule,
 

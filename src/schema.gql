@@ -9,27 +9,6 @@ type Permission {
   weight: Float!
 }
 
-type User {
-  _id: ID
-  username: String!
-  password: String!
-  permissions: [Permission!]
-  permissionIds: [ID!]
-}
-
-type AuthResponse {
-  user: User!
-  token: String!
-}
-
-type Brand {
-  _id: ID
-  name: String!
-  code: String!
-  weight: String!
-  createdBy: String!
-}
-
 type ContactDetails {
   contactPerson: String!
   mobileNumber: String!
@@ -53,6 +32,49 @@ type Branch {
   companyId: ID
 }
 
+type Department {
+  _id: ID
+  name: String!
+  code: String!
+}
+
+type PersonalDetails {
+  firstName: String!
+  lastName: String!
+  middleName: String!
+}
+
+type User {
+  _id: ID
+  username: String!
+  password: String!
+  contactDetails: ContactDetails
+  personalDetails: PersonalDetails
+  permissions: [Permission!]
+  branches: [Branch!]
+  branchOnDuty: Branch
+  departments: [Department!]
+  departmentOnDuty: Department
+  permissionIds: [ID!]
+  branchIds: [ID!]
+  branchOnDutyId: ID
+  departmentIds: [ID!]
+  departmentOnDutyId: ID
+}
+
+type AuthResponse {
+  user: User!
+  token: String!
+}
+
+type Brand {
+  _id: ID
+  name: String!
+  code: String!
+  weight: String!
+  createdBy: String!
+}
+
 type Query {
   me: User!
   branches: [Branch!]!
@@ -61,6 +83,8 @@ type Query {
   brand(id: String!): Brand!
   companys: [Company!]!
   company(id: String!): Company!
+  departmentes: [Department!]!
+  department(id: String!): Department!
   permissions: [Permission!]!
   permission(id: String!): Permission!
   users: [User!]!
@@ -77,6 +101,8 @@ type Mutation {
   removeBrand(id: String!): Brand!
   upsertCompany(inputs: CompanyInput!): Company!
   removeCompany(id: String!): Company!
+  upsertDepartment(inputs: DepartmentInput!): Department!
+  removeDepartment(id: String!): Department!
   upsertPermission(inputs: PermissionInput!): Permission!
   removePermission(id: String!): Permission!
   createUser(inputs: UserInput!): User!
@@ -119,6 +145,12 @@ input ContactDetailsType {
   telephone: String!
 }
 
+input DepartmentInput {
+  _id: ID
+  name: String!
+  code: String!
+}
+
 input PermissionInput {
   _id: ID
   name: String!
@@ -130,5 +162,17 @@ input UserInput {
   _id: ID
   username: String!
   password: String!
+  contactDetails: ContactDetailsType
+  personalDetails: PersonalDetailsType
   permissionIds: [ID!]
+  branchIds: [ID!]
+  branchOnDutyId: ID
+  departmentIds: [ID!]
+  departmentOnDutyId: ID
+}
+
+input PersonalDetailsType {
+  firstName: String!
+  lastName: String!
+  middleName: String!
 }

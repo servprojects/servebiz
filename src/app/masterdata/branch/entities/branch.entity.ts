@@ -3,8 +3,7 @@ import { Document, Schema as MongooseSchema } from 'mongoose';
 import { Field, ID, InputType, ObjectType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import {
-  Company,
-  CompanyDocument,
+  Company
 } from '../../company/entities/company.entity';
 import * as mongoose from 'mongoose';
 

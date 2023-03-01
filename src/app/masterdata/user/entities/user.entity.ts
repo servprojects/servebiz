@@ -7,6 +7,10 @@ import {
   Permission,
   PermissionDocument,
 } from '../../permission/entities/permission.entity';
+import { Branch } from '../../branch/entities/branch.entity';
+import { ContactDetails } from '@/app/embeded/contactDetails.dto';
+import { Department } from '../../department/entities/department.entity';
+import { PersonalDetails } from '@/app/embeded/personalDetails.dto';
 
 @InputType('UserType', { isAbstract: true })
 @ObjectType()
@@ -23,16 +27,62 @@ export class User {
   @Field((type) => String)
   password: string;
 
+  // EMBEDDED
+
+  @Prop({ type: ContactDetails })
+  @Field((type) => ContactDetails, { nullable: true })
+  contactDetails: ContactDetails;
+
+  @Prop({ type: PersonalDetails })
+  @Field((type) => PersonalDetails, { nullable: true })
+  personalDetails: PersonalDetails;
+
   // REFERENCES
 
   @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Permission' }] })
   @Field((type) => [Permission], { nullable: true })
   permissions: Permission[];
 
+  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Branch' }] })
+  @Field((type) => [Branch], { nullable: true })
+  branches: Branch[];
+
+  @Prop({
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'Branch',
+  })
+  @Field((type) => Branch, { nullable: true })
+  branchOnDuty: Branch;
+
+  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Department' }] })
+  @Field((type) => [Department], { nullable: true })
+  departments: Department[];
+
+  @Prop({
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'Department',
+  })
+  @Field((type) => Department, { nullable: true })
+  departmentOnDuty: Department;
+
   // IDS
 
   @Field((type) => [ID], { nullable: true })
   permissionIds: mongoose.Schema.Types.ObjectId[];
+
+  @Field((type) => [ID], { nullable: true })
+  branchIds: mongoose.Schema.Types.ObjectId[];
+
+  @Field((type) => ID, { nullable: true })
+  branchOnDutyId: mongoose.Schema.Types.ObjectId;
+
+  @Field((type) => [ID], { nullable: true })
+  departmentIds: mongoose.Schema.Types.ObjectId[];
+
+  @Field((type) => ID, { nullable: true })
+  departmentOnDutyId: mongoose.Schema.Types.ObjectId;
 }
 
 export type UserDocument = User & Document;
