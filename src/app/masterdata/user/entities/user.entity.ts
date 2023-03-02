@@ -41,11 +41,11 @@ export class User {
 
   @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Permission' }] })
   @Field((type) => [Permission], { nullable: true })
-  permissions: Permission[];
+  permissions: mongoose.Schema.Types.ObjectId[];
 
   @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Branch' }] })
   @Field((type) => [Branch], { nullable: true })
-  branches: Branch[];
+  branches: mongoose.Schema.Types.ObjectId[];
 
   @Prop({
     type: mongoose.Schema.Types.ObjectId,
@@ -53,11 +53,11 @@ export class User {
     ref: 'Branch',
   })
   @Field((type) => Branch, { nullable: true })
-  branchOnDuty: Branch;
+  branchOnDuty: mongoose.Schema.Types.ObjectId;
 
   @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Department' }] })
   @Field((type) => [Department], { nullable: true })
-  departments: Department[];
+  departments: mongoose.Schema.Types.ObjectId[];
 
   @Prop({
     type: mongoose.Schema.Types.ObjectId,
@@ -65,7 +65,7 @@ export class User {
     ref: 'Department',
   })
   @Field((type) => Department, { nullable: true })
-  departmentOnDuty: Department;
+  departmentOnDuty: mongoose.Schema.Types.ObjectId; 
 
   // IDS
 
